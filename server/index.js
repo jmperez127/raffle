@@ -1,11 +1,16 @@
-var Hapi = require("hapi");
+exports.register = function (server, options, next) {
+    server.route([
+        {
+            method: 'GET',
+            path: '/',
+            handler: function (request, reply) {
+                reply('Hello, world!');
+            }
+        }
+    ]);
+    next();
+};
 
-var server = Hapi.Server(8080);
-
-server.route({
-    method: 'GET', path: '/', handler: function (request) {
-        request.reply('hello from hapi');
-    }
-});
-
-server.start();
+exports.register.attributes = {
+    name: 'index'
+};
