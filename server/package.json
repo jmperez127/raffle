@@ -13,7 +13,8 @@
   "author": "Warao Gil<wgil14@gmail.com>, Jean Pérez <jmperez127@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "hapi": "^11.0.2"
+    "hapi": "^11.0.2",
+    "inert": "^3.2.0"
   },
   "devDependencies": {
     "joi": "^6.10.0",

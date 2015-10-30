@@ -24,8 +24,7 @@ lab.experiment("basics", function(){
         };
 
         Server.inject(options, function(response) {
-            var result = response.result;
-            Code.expect(result).to.equal('Hello, world!');
+            Code.expect(response.statusCode).to.equal(200);
             done();
         });
     });
