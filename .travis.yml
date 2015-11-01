@@ -11,6 +11,10 @@ sudo: false
 cache:
   directories:
     - node_modules
+    
+before_script:
+  - npm install -g bower
+  - bower install
 
 before_install:
   - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
@@ -21,4 +25,4 @@ env:
   - TEST_DIR=client
   - TEST_DIR=server
 
-script: cd $TEST_DIR && npm install && bower install && npm test
+script: cd $TEST_DIR && npm install && npm test
