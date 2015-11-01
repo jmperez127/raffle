@@ -31,26 +31,7 @@ server.register({
     if (err)
         throw err;
 
-    server.route([
-        {
-            method: 'GET',
-            path: '/',
-            handler: function (request, reply) {
-                reply.file('./../public/index.html');
-            }
-        },
-        {
-            method: 'GET',
-            path: '/{path*}',
-            handler: {
-                directory: {
-                    path: './../public',
-                    listing: false
-                }
-            }
-
-        }
-    ]);
+    server.route(require("./app/routes"));
 
     server.start(function () {
         server.log('info', 'Server running at: ' + server.info.uri);
