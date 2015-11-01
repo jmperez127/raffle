@@ -21,4 +21,4 @@ env:
   - TEST_DIR=client
   - TEST_DIR=server
 
-script: cd $TEST_DIR && npm install && npm test
+script: cd $TEST_DIR && bower install && npm install && npm test
