@@ -2,8 +2,10 @@
   "name": "raffle-server",
   "version": "0.0.1",
   "description": "",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "build": "gulp",
+    "start": "nodemon server.js",
     "test": "lab"
   },
   "repository": {
