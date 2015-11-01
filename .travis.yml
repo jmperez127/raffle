@@ -8,10 +8,6 @@ node_js:
 
 sudo: false
 
-before_script:
-  - npm install -g bower
-  - bower install
-
 before_install:
   - export PATH=/usr/local/phantomjs-2.0.0/bin:$PATH
   - "npm config set spin false"
@@ -21,4 +17,4 @@ env:
   - TEST_DIR=client
   - TEST_DIR=server
 
-script: cd $TEST_DIR && npm install && bower install && npm test
+script: cd $TEST_DIR && npm install && npm install -g bower && bower install && npm test
