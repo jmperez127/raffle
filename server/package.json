@@ -10,10 +10,10 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://repo_here"
+    "url": "https://github.com/theil/raffle"
   },
   "author": "Warao Gil<wgil14@gmail.com>, Jean Pérez <jmperez127@gmail.com>",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {
     "hapi": "^11.0.2",
     "joi": "^6.10.0",

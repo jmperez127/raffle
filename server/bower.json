@@ -1,0 +1,18 @@
+{
+  "name": "raffle-server",
+  "main": "server.js",
+  "version": "0.0.1",
+  "homepage": "https://github.com/theil/raffle",
+  "authors": [
+    "Warao Gil<wgil14@gmail.com>",
+    "Jean Pérez <jmperez127@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
