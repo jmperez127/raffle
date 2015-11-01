@@ -1,7 +1,7 @@
 var Code = require('code');
 var Lab = require('lab');
 var lab = exports.lab = Lab.script();
-Router = require("../../../app/helpers/array_helper");
+var utils = require("../../../app/helpers/array_helper");
 
 
 lab.experiment("array utils", function () {

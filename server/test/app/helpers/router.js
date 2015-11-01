@@ -2,8 +2,7 @@ var Code = require('code');
 var Lab = require('lab');
 var Server = require('../../../server');
 var lab = exports.lab = Lab.script();
-Router = require("../../../app/helpers/router");
-
+var Router = require("../../../app/helpers/router");
 
 lab.experiment("helpers", function () {
     lab.before(function (done) {

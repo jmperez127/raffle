@@ -1,9 +1,8 @@
 require("./array_helper");
-
-module.exports = {
-    resources: [],
-    routes: [],
-    map: function (fn) {
+var Router = function(){
+    var resources = [];
+    var routes = [];
+    var map = function (fn) {
 
         var self = this;
 
@@ -25,4 +24,10 @@ module.exports = {
         var routes = new fn();
 
     }
-};
+    return {
+        map: map,
+        resources: resources,
+        routes: routes
+    }
+}();
+module.exports = Router;
