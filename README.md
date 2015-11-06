@@ -6,6 +6,7 @@ Feel free to contribute to this project, pull requests are more than welcome!
 
 ##Code Status##
 ![travis-ci](https://travis-ci.org/theil/raffle.svg?branch=master)
+[![Coverage Status](https://coveralls.io/repos/theil/raffle/badge.svg?branch=master&service=github)](https://coveralls.io/github/theil/raffle?branch=master)
 
 ##License##
 Raffle app is under the [MIT License](http://opensource.org/licenses/MIT "MIT License").
