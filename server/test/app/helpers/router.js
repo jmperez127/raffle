@@ -4,7 +4,7 @@ var Server = require('../../../server');
 var lab = exports.lab = Lab.script();
 var Router = require("../../../app/helpers/router");
 
-lab.experiment("helpers", function () {
+lab.experiment("Router", function () {
     lab.before(function (done) {
         Router.map(function () {
             this.resource("raffles");
@@ -38,36 +38,33 @@ lab.experiment("helpers", function () {
         done();
     });
 
-
     lab.test("should access a defined route and its method", function (done) {
         Code.expect(Router.routes).to.deep.equal([
-            { path: "/raffles", method: "GET", handler: undefined},
-            { path: "/raffles", method: "POST", handler: undefined},
-            { path: "/raffles/{id}", method: "GET", handler: undefined},
-            { path: "/raffles/{id}", method: "PUT", handler: undefined},
-            { path: "/raffles/{id}", method: "DELETE", handler: undefined},
+            {name: "raffles_index", path: "/raffles", method: "GET", action: "RafflesController#index"},
+            {name: "raffles_create", path: "/raffles", method: "POST", action: "RafflesController#create"},
+            {name: "raffles_show", path: "/raffles/{id}", method: "GET", action: "RafflesController#show"},
+            {name: "raffles_update", path: "/raffles/{id}", method: "PUT", action: "RafflesController#update"},
+            {name: "raffles_delete", path: "/raffles/{id}", method: "DELETE", action: "RafflesController#delete"},
 
-            { path: "/users", method: "GET", handler: undefined},
-            { path: "/users", method: "POST", handler: undefined},
-            { path: "/users/{id}", method: "GET", handler: undefined},
-            { path: "/users/{id}", method: "PUT", handler: undefined},
-            { path: "/users/{id}", method: "DELETE", handler: undefined}
+            {name: "users_index", path: "/users", method: "GET", action: "UsersController#index"},
+            {name: "users_create", path: "/users", method: "POST", action: "UsersController#create"},
+            {name: "users_show", path: "/users/{id}", method: "GET", action: "UsersController#show"},
+            {name: "users_update", path: "/users/{id}", method: "PUT", action: "UsersController#update"},
+            {name: "users_delete", path: "/users/{id}", method: "DELETE", action: "UsersController#delete"}
         ]);
 
         done();
     });
 
 
+    lab.test("it is possible to map a specific route", function (done) {
+        Router.map(function () {
+            this.route("specific", {path: "/specific", method: "GET"});
+        });
 
-    lab.test("it is possible to app a specific route", function (done) {
-        //Router.map(function () {
-        //    this.route("specific", {path: "/specific", method: "GET"} );
-        //});
-        //Code.expect(Router.findRoute("specific")).to.deep.equal([
-        //
-        //    { path: "/specific", method: "GET" },
-        //]);
-
+        Code.expect(Router.findRoute("specific")).to.deep.equal(
+            {name: "specific", path: "/specific", method: "GET", action: null}
+        );
         done();
     });
 

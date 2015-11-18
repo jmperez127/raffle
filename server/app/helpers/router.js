@@ -1,33 +1,71 @@
-require("./array_helper");
-var Router = function(){
+// TODO make a library out of this
+var _ = require('lodash');
+
+var Router = function () {
     var resources = [];
     var routes = [];
     var map = function (fn) {
 
         var self = this;
 
-        fn.prototype.route = function(name, path, method, handler){
-            self.routes.push({path: path, method: method, handler: handler});
+        fn.prototype.route = function (name, opts) {
+            opts.method = opts.method || null;
+            opts.action = opts.action || null;
+            opts.path = opts.path || null;
+            self.routes.push({
+                name: name,
+                path: opts.path,
+                method: opts.method,
+                action: opts.action
+            });
         };
 
         fn.prototype.resource = function (name) {
-            if (!self.resources.contains(name)){
+            if (!_.includes(self.resources, name)) {
                 self.resources.push(name);
-                this.route(name, "/"+name, "GET");
-                this.route(name, "/"+name, "POST");
-                this.route(name, "/"+name+"/{id}", "GET");
-                this.route(name, "/"+name+"/{id}", "PUT");
-                this.route(name, "/"+name+"/{id}", "DELETE");
+                var controllerName = _.capitalize(name) + "Controller";
+
+                this.route(name + "_index", {
+                    path: "/" + name,
+                    method: "GET",
+                    action: controllerName + "#index"
+                });
+                this.route(name + "_create", {
+                    path: "/" + name,
+                    method: "POST",
+                    action: controllerName + "#create"
+                });
+                this.route(name + "_show", {
+                    path: "/" + name + "/{id}",
+                    method: "GET",
+                    action: controllerName + "#show"
+                });
+                this.route(name + "_update", {
+                    path: "/" + name + "/{id}",
+                    method: "PUT",
+                    action: controllerName + "#update"
+                });
+                this.route(name + "_delete", {
+                    path: "/" + name + "/{id}",
+                    method: "DELETE",
+                    action: controllerName + "#delete"
+                });
             }
         };
+        var defineMappedRoutes = new fn();
+    };
 
-        var routes = new fn();
+    var findRouteByName = function (routeName) {
+        return _.find(this.routes, function (route) {
+            return route.name == routeName;
+        });
+    };
 
-    }
     return {
         map: map,
         resources: resources,
-        routes: routes
+        routes: routes,
+        findRoute: findRouteByName
     }
 }();
 module.exports = Router;
